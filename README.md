@@ -1,152 +1,104 @@
-URL Shortener Project
+# URL Shortener Project
 
-Overview
+## Overview
 
 The URL Shortener project is a web application that allows users to shorten long URLs into compact and manageable links. This project is built using modern technologies and is designed for performance and scalability.
 
-Features
+## Features
 
-Shorten long URLs to a compact form.
+* Shorten long URLs to a compact form.
+* Retrieve the long URL when requested with short URL
+* Store URL mappings in a MongoDB database.
+* Use Redis for caching to improve performance.
 
-Redirect shortened URLs to their original destinations.
+## Technologies Used
 
-Store URL mappings in a MongoDB database.
+1. Java: Backend logic and API development.
+2. Spring Boot: Framework for building the application.
+3. MongoDB: NoSQL database for storing URL mappings.
+4. Redis: Caching layer to speed up URL retrieval.
+5. Docker: Containerization for easy deployment.
 
-Use Redis for caching to improve performance.
+## Installation and Setup
 
-Deployable using Docker for seamless setup and scaling.
-
-Technologies Used
-
-Java: Backend logic and API development.
-
-Spring Boot: Framework for building the application.
-
-MongoDB: NoSQL database for storing URL mappings.
-
-Redis: Caching layer to speed up URL retrieval.
-
-Docker: Containerization for easy deployment.
-
-Installation and Setup
-
-Prerequisites
+## Prerequisites
 
 Ensure you have the following installed on your system:
 
-Java 17
+* Java 17
 
-Docker
+* Docker
 
-MongoDB
+## Steps
 
-Redis
+1. Clone the Repository:
+- `git clone [https://github.com/your-username/url-shortener.git](https://github.com/SarvarTulkunov/url-shortener.git)`
+- `cd url-shortener`
 
-Steps
+2. Build the Project:
 
-Clone the Repository:
+- ./mvnw clean package
 
-git clone https://github.com/your-username/url-shortener.git
-cd url-shortener
-
-Build the Project:
-
-./mvnw clean package
-
-Run the Application Locally:
+3. Run the Application Locally:
 
 java -jar target/url-shortener.jar
 
-Run with Docker:
+4. Run with Docker:
 
-Build the Docker image:
+- Build the Docker image:
+  `docker-compose build`
 
-docker build -t url-shortener .
+- Start the containers using Docker Compose:
+  `docker-compose up`
 
-Start the containers using Docker Compose:
-
-docker-compose up
-
-Configuration
+## Configuration
 
 The application uses the following environment variables for configuration:
 
-MONGO_URI: MongoDB connection string (e.g., mongodb://localhost:27017/urlshortener)
+ - MONGO_URI: MongoDB connection string (e.g., mongodb://localhost:27017/urlshortener)
 
-REDIS_HOST: Redis server host (e.g., localhost)
+ - REDIS_HOST: Redis server host (e.g., localhost)
 
-REDIS_PORT: Redis server port (default: 6379)
+ - REDIS_PORT: Redis server port (default: 6379)
 
 You can set these variables in a .env file or directly in your Docker Compose configuration.
 
-API Endpoints
+## API Endpoints
 
-1. Shorten URL
+# 1. Shorten URL
 
-Endpoint: POST /api/v1/shorten
+**Endpoint:** `POST /api/v1/shorten`
 
-Request Body:
+**Request Param:**
 
-{
+`{
   "longUrl": "https://example.com"
-}
+}`
 
-Response:
+**Response:**
 
-{
+`{
   "shortUrl": "http://your-domain/{shortCode}"
-}
+}`
 
-2. Redirect to Original URL
+# 2. Get Original URL (it can be implemented to redirect to the original URL)
 
-Endpoint: GET /{shortCode}
+**Endpoint:** `GET /api/v1/{shortCode}`
 
-Response:
-Redirects the user to the original URL.
+**Response:** Get Long URL (Or you can change it so that it redirects the user to the original URL)
 
-Project Structure
-
-src/main/java: Contains application source code.
-
-src/main/resources: Configuration files and templates.
-
-Dockerfile: Defines how to build the application container.
-
-docker-compose.yml: Simplifies container orchestration.
-
-Caching with Redis
+## Caching with Redis
 
 Redis is used to cache shortened URLs to enhance retrieval speed and reduce database queries. Cached entries expire after a defined TTL (time-to-live), which can be configured in the application properties.
 
-Testing
-
-Run the following command to execute the tests:
-
-./mvnw test
-
-Contribution
+## Contribution
 
 Contributions are welcome! To contribute:
 
-Fork the repository.
+1. Fork the repository.
 
-Create a feature branch.
+2. Create a feature branch.
 
-Commit your changes.
+3. Commit your changes.
 
-Create a pull request.
-
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Contact
-
-For any questions or feedback, feel free to reach out:
-
-Email: your-email@example.com
-
-GitHub: your-username
-
-Thank you for checking out this project! If you find it helpful, please give it a star on GitHub!
-
+4. Create a pull request.
